@@ -12,7 +12,7 @@
   </head>
   <body>
     <div class="container">
-      <h1 class="display-4 text-center">Dokumen</h1>
+      <h3 class="display-3 text-center">Pencarian Kata Baku dan Tidak Baku</h3>
       <div class="row">
       	<?php if($this->session->flashdata('pesan')): ?>
       	<div class="col-12 mt-2 text-center">

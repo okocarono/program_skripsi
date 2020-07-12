@@ -21,11 +21,13 @@
 
       <div class="row">
 	<div class="col-6">
-	  <h3>Total kata : <span id="total_kata">0</span> kata.</h3>
-	  <h3>Total kata baku : <span id="total_kata_baku">0</span> kata.</h3>
-	  <h3>Total kata tidak baku :  <span id="total_masalah">0</span> kata.</h3>
-	  <h3>Total katsim yang dibuang :  <span id="total_kata_dibuang">0</span> katsim.</h3>
-	  <small class="text-muted">*Katsim merupakan akronim dari kata dan simbol</small>
+    <h3>Total kata baku : <span id="total_kata_baku">0</span> kata.</h3>
+    <h3>Total kata tidak baku :  <span id="total_masalah">0</span> kata.</h3>
+    <h3>Total kata di dokumen : <span id="total_kata_dokumen">0</span> kata.</h3>
+    <h3>Total kata di stemming : <span id="total_kata">0</span> kata.</h3>
+    <h3>Total katsim yang dibuang :  <span id="total_kata_dibuang">0</span> katsim.</h3>
+    <h3>Total waktu eksekusi :  <span id="total_waktu_eksekusi">0</span> detik.</h3>
+    <small class="text-muted">*Katsim merupakan akronim dari kata dan simbol</small>
 	  <br>
 	  <small class="text-danger font-weight-bold">Kata tidak baku bisa berupa nama orang, bahasa asing, dan merek</small>
 	  <br>
@@ -55,8 +57,10 @@
       let id_dokumen = document.getElementById('id_dokumen');
       let total_kata = document.getElementById('total_kata');
       let total_kata_baku = document.getElementById('total_kata_baku');
-      let total_kata_dokumen = document.getElementById('total_kata_dibuang');
+      let total_kata_dokumen = document.getElementById('total_kata_dokumen');
+      let total_kata_dibuang = document.getElementById('total_kata_dibuang');
       let total_masalah = document.getElementById('total_masalah');
+      let total_waktu_eksekusi = document.getElementById('total_waktu_eksekusi');
       let tombol = document.getElementById('tombol');
 
       let list_tidak_baku = document.getElementById('list_tidak_baku');
@@ -103,8 +107,10 @@
 		  }
 		  total_kata.innerText = result.total_kata;
 		  total_kata_baku.innerText = result.total_kata_baku;
+      total_kata_dokumen.innerText = result.total_kata_dokumen;
 		  total_kata_dibuang.innerText = result.dibuang;
 		  total_masalah.innerText = result.total_masalah;
+      total_waktu_eksekusi.innerText = result.total_waktu_eksekusi.toFixed(2);
 
 		  let kata_dibuang = result.masalah_baru;
 

@@ -13,20 +13,16 @@ from kbbi import TidakDitemukan
 from Sastrawi.Stemmer.StemmerFactory import StemmerFactory
 from flask import Flask, jsonify, request
 from flask_cors import CORS, cross_origin
+import time
 
 app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
-# create stemmer
 factory = StemmerFactory()
 stemmer = factory.create_stemmer()
-    
-# stem
-#sentence = docx2txt.process("latarbelakang.docx")
 
 def init(filepath):
-    #sentence = docx2txt.process("C:/xampp/htdocs/stemming_naziefadriani/dokumen/Bab_21.docx")
     print(filepath)
     sentence = docx2txt.process(filepath)
     
@@ -34,8 +30,6 @@ def init(filepath):
     output = list(output.split(' '))
     total_kata = len(output)
     
-    # kalo pengen liat isi dari variabel output hilangkan pagar di bawah ini
-    # output
     
     spell = SpellChecker(language=None)
     spell2 = SpellChecker()   
@@ -49,20 +43,13 @@ def init(filepath):
     keliru = list()
     
     for word in misspelled:
-      #print(spell.correction(word))
     
         if spell2.correction(word) in misspelled2:
             keliru.append(spell2.correction(word))
-        #print('keliru')
-        #print(spell2.correction(word))
+
         koreksi.append(spell.correction(word))
-  
-      #print (word)
-      #print()
-      #print(spell.candidates(word))
-      
+
     auth = AutentikasiKBBI("zuttocool@gmail.com", "oko123oko")
-    # roh = KBBI("ikan", auth)
     
     masalah = list()
     masalah_baru = list()
@@ -74,8 +61,6 @@ def init(filepath):
         print(e)
         masalah_baru.append(str(e))
         masalah.append(str(huk))
-    
-      #print(huk)
       
     total_kata_dokumen = len(sentence)
     dibuang = total_kata_dokumen - total_kata
@@ -102,6 +87,8 @@ def test():
 @cross_origin()
 @app.route('/index', methods=['POST'])
 def index():
+    start_time = time.time()
+
     content = request.get_json()
     print(content['lokasi'])
 
@@ -109,15 +96,17 @@ def index():
     text1 = 'total kata pada dokumen :' + str(total_kata_dokumen) + 'kata \n'
     text2 = 'total kata yang sudah distemming :' + str(total_kata) + 'kata \n'
     
+    total_waktu_eksekusi = time.time() - start_time
     print(text1);
     print(text2);
     print('total kata atau simbol yang tidak penting :', dibuang)
     print('total kata baku :', total_kata_baku, 'kata')
     print('total kata tidak baku :', total_masalah, 'kata')
     print('kata tidak baku :', masalah)
+    print('total waktu eksekusi :', total_waktu_eksekusi, 'detik')
     print('=======================================================')
     print('kata tidak baku bisa jadi berupa nama orang atau merek!')
-    result = {'total_kata_dokumen': total_kata_dokumen, 'total_kata': total_kata, 'dibuang': dibuang, 'total_kata_baku': total_kata_baku, 'total_masalah': total_masalah, 'masalah_baru': masalah_baru}
+    result = {'total_kata_dokumen': total_kata_dokumen, 'total_kata': total_kata, 'dibuang': dibuang, 'total_kata_baku': total_kata_baku, 'total_masalah': total_masalah, 'masalah_baru': masalah_baru, 'total_waktu_eksekusi': total_waktu_eksekusi}
 
     return jsonify(result)
 
