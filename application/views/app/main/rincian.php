@@ -20,20 +20,20 @@
       <hr>
 
       <div class="row">
-	<div class="col-6">
-    <h3>Total kata baku : <span id="total_kata_baku">0</span> kata.</h3>
-    <h3>Total kata tidak baku :  <span id="total_masalah">0</span> kata.</h3>
-    <h3>Total kata di dokumen : <span id="total_kata_dokumen">0</span> kata.</h3>
-    <h3>Total kata di stemming : <span id="total_kata">0</span> kata.</h3>
-    <h3>Total katsim yang dibuang :  <span id="total_kata_dibuang">0</span> katsim.</h3>
-    <h3>Total waktu eksekusi :  <span id="total_waktu_eksekusi">0</span> detik.</h3>
+	<div class="col-5">
+    <h4>Total kata baku : <span id="total_kata_baku">0</span> kata.</h4>
+    <h4>Total kata tidak baku :  <span id="total_masalah">0</span> kata.</h4>
+    <h4>Total kata di dokumen : <span id="total_kata_dokumen">0</span> kata.</h4>
+    <h4>Total kata di stemming : <span id="total_kata">0</span> kata.</h4>
+    <h4>Total katsim yang dibuang :  <span id="total_kata_dibuang">0</span> katsim.</h4>
+    <h4>Total waktu eksekusi :  <span id="total_waktu_eksekusi">0</span> detik.</h4>
     <small class="text-muted">*Katsim merupakan akronim dari kata dan simbol</small>
 	  <br>
 	  <small class="text-danger font-weight-bold">Kata tidak baku bisa berupa nama orang, bahasa asing, dan merek</small>
 	  <br>
 	</div>
-	<div class="col-6">
-	  <h3>Kata tidak baku</h3>
+	<div class="col-3">
+	  <h5>Kata tidak baku</h5>
 	  <div style="height: 200px; overflow-y: scroll">
 	    <table class="table">
 	      <tbody id="list_tidak_baku">
@@ -41,6 +41,15 @@
 	    </table>
 	  </div>
 	</div>
+  <div class="col-4">
+    <h5>Rekomendasi Kata Baku</h5>
+    <div style="height: 200px; overflow-y: scroll">
+      <table class="table">
+        <tbody id="rekomendasi_kata">
+        </tbody>
+      </table>
+    </div>
+  </div>
       </div>
       
       <hr>
@@ -64,7 +73,8 @@
       let tombol = document.getElementById('tombol');
 
       let list_tidak_baku = document.getElementById('list_tidak_baku');
-      
+      let rekomendasi_kata = document.getElementById('rekomendasi_kata');
+
       const load_data = async (id_dokumen, lokasi_dokumen) => {
 		  return await axios.post('http://127.0.0.1:5000/index', {
 		  	id: id_dokumen,
@@ -111,10 +121,20 @@
 		  total_kata_dibuang.innerText = result.dibuang;
 		  total_masalah.innerText = result.total_masalah;
       total_waktu_eksekusi.innerText = result.total_waktu_eksekusi.toFixed(2);
+      
+      // rekomendasi_kata.innerText = result.masalah;
 
-		  let kata_dibuang = result.masalah_baru;
+      let saran_kata = result.masalah;
+      let kata_dibuang = result.masalah_baru;
 
-		  let sementara = '';
+      let saran = '';
+      let sementara = '';
+
+      saran_kata.forEach(res => {
+          saran += `<tr><td>${res}</td></tr>`;
+      });
+
+      rekomendasi_kata.innerHTML = saran;
 
 		  kata_dibuang.forEach(res => {
 		      sementara += `<tr><td>${res}</td></tr>`;

@@ -106,7 +106,7 @@ def index():
     print('total waktu eksekusi :', total_waktu_eksekusi, 'detik')
     print('=======================================================')
     print('kata tidak baku bisa jadi berupa nama orang atau merek!')
-    result = {'total_kata_dokumen': total_kata_dokumen, 'total_kata': total_kata, 'dibuang': dibuang, 'total_kata_baku': total_kata_baku, 'total_masalah': total_masalah, 'masalah_baru': masalah_baru, 'total_waktu_eksekusi': total_waktu_eksekusi}
+    result = {'total_kata_dokumen': total_kata_dokumen, 'total_kata': total_kata, 'dibuang': dibuang, 'total_kata_baku': total_kata_baku, 'total_masalah': total_masalah, 'masalah_baru': masalah_baru, 'masalah': masalah, 'total_waktu_eksekusi': total_waktu_eksekusi}
 
     return jsonify(result)
 
