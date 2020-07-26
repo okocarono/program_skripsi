@@ -9,11 +9,11 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
-    <title>Pencarian Kata Baku!</title>
+    <title>Pencarian Kata Tidak Baku</title>
   </head>
   <body>
     <div class="container">
-      <h1 class="display-4 text-center" onclick="debug()">Pencarian Kata Baku Dan Tidak Baku</h1>
+      <h1 class="display-4 text-center" onclick="debug()">Pencarian Kata Tidak Baku</h1>
 
       <input type="hidden" id="id_dokumen" value="<?= $dokumen->id_dokumen ?>">
       <input type="hidden" id="lokasi_dokumen" value="<?= $dokumen->file_path ?>">
@@ -21,16 +21,43 @@
 
       <div class="row">
 	<div class="col-5">
-    <h4>Total kata baku : <span id="total_kata_baku">0</span> kata.</h4>
-    <h4>Total kata tidak baku :  <span id="total_masalah">0</span> kata.</h4>
-    <h4>Total kata di dokumen : <span id="total_kata_dokumen">0</span> kata.</h4>
-    <h4>Total kata di stemming : <span id="total_kata">0</span> kata.</h4>
-    <h4>Total katsim yang dibuang :  <span id="total_kata_dibuang">0</span> katsim.</h4>
-    <h4>Total waktu eksekusi :  <span id="total_waktu_eksekusi">0</span> detik.</h4>
-    <small class="text-muted">*Katsim merupakan akronim dari kata dan simbol</small>
+    <table>
+        <tr>
+            <td><h5>Total kata di dokumen</h5></td>
+            <td><h5>:</h5></td>
+            <td><h5><span id="total_kata_dokumen">0</span> kata.</h5></td>
+        </tr>
+        <tr>
+            <td><h5>Total kata & simbol yang dibuang</h5></td>
+            <td><h5>:</h5></td>
+            <td><h5><span id="total_kata_dibuang">0</span> kata.</h5></td>
+        </tr>
+        <tr>
+            <td><h5>Total kata di stemming</h5></td>
+            <td><h5>:</h5></td>
+            <td><h5><span id="total_kata">0</span> kata.</h5></td>
+        </tr>
+        <tr>
+            <td><h5>Total kata baku </h5></td>
+            <td><h5>:</h5></td>
+            <td><h5><span id="total_kata_baku">0</span> kata.</h5></td>
+        </tr>
+        <tr>
+            <td><h5>Total kata tidak baku</h5></td>
+            <td><h5>:</h5></td>
+            <td><h5><span id="total_masalah">0</span> kata.</h5></td>
+        </tr>
+        <tr>
+            <td><h5>Total waktu eksekusi</h5></td>
+            <td><h5>:</h5></td>
+            <td><h5><span id="total_waktu_eksekusi">0</span> detik.</h5></td>
+        </tr>
+    </table>
+    
+	  <small class="text-danger font-weight-bold">* Kata tidak baku bisa berupa nama orang, bahasa asing, dan merek</small>
 	  <br>
-	  <small class="text-danger font-weight-bold">Kata tidak baku bisa berupa nama orang, bahasa asing, dan merek</small>
-	  <br>
+    <small class="text-danger font-weight-bold">* Jika kata pada kolom rekomendasi kosong maka kata bisa berupa nama orang, bahasa asing, dan merek</small>
+    <br>
 	</div>
 	<div class="col-3">
 	  <h5>Kata tidak baku</h5>

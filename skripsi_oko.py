@@ -47,7 +47,7 @@ def init(filepath):
         if spell2.correction(word) in misspelled2:
             keliru.append(spell2.correction(word))
 
-        koreksi.append(spell.correction(word))
+        koreksi.append(word)
 
     auth = AutentikasiKBBI("zuttocool@gmail.com", "oko123oko")
     
@@ -103,6 +103,7 @@ def index():
     print('total kata baku :', total_kata_baku, 'kata')
     print('total kata tidak baku :', total_masalah, 'kata')
     print('kata tidak baku :', masalah)
+    #print('kata masalah baru :', masalah_baru)
     print('total waktu eksekusi :', total_waktu_eksekusi, 'detik')
     print('=======================================================')
     print('kata tidak baku bisa jadi berupa nama orang atau merek!')

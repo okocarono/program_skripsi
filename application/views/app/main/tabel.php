@@ -12,7 +12,7 @@
   </head>
   <body>
     <div class="container">
-      <h3 class="display-3 text-center">Pencarian Kata Baku dan Tidak Baku</h3>
+      <h3 class="display-3 text-center">Pencarian Kata Tidak Baku</h3>
       <div class="row">
       	<?php if($this->session->flashdata('pesan')): ?>
       	<div class="col-12 mt-2 text-center">
@@ -20,7 +20,7 @@
       	</div>
         <?php endif; ?>
 		<div class="col-12 my-2">
-		  <button type="button" data-toggle="modal" data-target="#unggahModal"  class="btn btn-success float-right">Unggah Dokumen</button>
+		  <button type="button" data-toggle="modal" data-target="#unggahModal"  class="btn btn-success float-left">Unggah Dokumen</button>
 		</div>
 		<div class="col-12">
 		  <table class="table table-striped">
@@ -37,12 +37,13 @@
 					<td><?= $dokumen->nama_dokumen; ?></td>
 					<td><?= date('d/m/Y', strtotime($dokumen->tanggal)) ?></td>
 					<td>
-					  <a href="<?= base_url('App/rincian/') . $dokumen->id_dokumen ?>" class="badge badge-sm badge-pill badge-success text-white py-2">Lihat Dokumen</a>
+					  <a href="<?= base_url('App/rincian/') . $dokumen->id_dokumen ?>" class="badge badge-sm badge-pill badge-success text-white py-2">Proses Dokumen</a>
 					</td>
 			      </tr>
 			  <?php endif; ?>
 		    </tbody>
 		  </table>
+		  <small class="font-weight-bold">* Klik tombol "Proses Dokumen untuk melakukan proses selanjutnya</small>
 		</div>
       </div>
     </div>
@@ -66,7 +67,7 @@
 			    </div>
 			  </div>
 			  <div class="modal-footer">
-	            <button type="button" class="btn btn-secondary" data-dismiss="modal">Ga jadi</button>
+	            <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
 	            <button type="submit" class="btn btn-primary">Unggah Sekarang</button>
 			  </div>
 		  </form>

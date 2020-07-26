@@ -258,7 +258,6 @@ afirmasi
 afirmatif 
 afonia 
 aforisme 
-afotik 
 afrasia 
 afrikat 
 afrodisiak 
@@ -561,7 +560,6 @@ aling
 alir 
 alis 
 alisiklik 
-alit 
 aliterasi 
 alizarin 
 aljabar 
@@ -601,7 +599,7 @@ alotropi
 alpa 
 alpaka 
 alperes 
-Alquran 
+Al-qur’an 
 altar 
 alter ego 
 alternasi 
@@ -658,9 +656,10 @@ ambang
 ambar 
 ambasador 
 ambek 
-ambek paramaarta 
+ambek paramarta 
 ambergris 
-ambet 
+ambet
+ambeien
 ambigu 
 ambiguitas 
 ambil 
@@ -1185,7 +1184,6 @@ apostolik
 apostrof 
 apotek 
 apoteker 
-apotik 
 apraksi 
 apraksia 
 apresiasi 
@@ -4287,7 +4285,6 @@ cokar
 cokek 
 cokelat 
 coket 
-coklat 
 cokmar 
 coko 
 cokok 
@@ -8260,7 +8257,6 @@ glukosan
 glukosida 
 gluten 
 gnomon 
-goak 
 gob 
 goba 
 gobak 
@@ -8817,7 +8813,6 @@ heksaklorida
 heksameter 
 heksana 
 heksapoda 
-hektar 
 hektare 
 hektograf 
 hektogram 
@@ -9384,8 +9379,7 @@ ihtimal
 ihwal 
 ijab 
 ijabat 
-ijajil 
-ijarah 
+ijajil  
 ijas 
 ijazah 
 ijbar 
@@ -10184,7 +10178,6 @@ jamadat
 jamah 
 jamak 
 jamal 
-jamang 
 jambak 
 jambal 
 jamban 
@@ -17593,7 +17586,6 @@ nahak
 nahas 
 nahdiyin 
 nahi 
-nahkoda 
 nahu 
 naib 
 naif 
@@ -17674,7 +17666,6 @@ nasakh
 nasal 
 nasalisasi 
 nasar 
-nasehat 
 nasel 
 nasi 
 nasib 
@@ -17755,7 +17746,7 @@ negasi
 negatif 
 negativisme 
 negativistik 
-Neger 
+Negeri
 negosi 
 negosiasi 
 negosiator 
@@ -18203,10 +18194,6 @@ obstetri
 obstruen 
 obstruksi 
 obviatif 
-obyek 
-obyektif 
-obyektivisme 
-obyektivitas 
 oceh 
 odalan 
 ode 
@@ -18321,8 +18308,7 @@ ompol
 ompong 
 ompreng 
 omprong 
-ompu 
-omset 
+ompu
 omslah 
 omzet 
 onagata 
@@ -19640,7 +19626,8 @@ perang
 perangah 
 perangai 
 peranggang 
-peranggu 
+peranggu
+perangkat
 perangin 
 peranjat 
 peranti 
@@ -23758,8 +23745,7 @@ sepir
 sepit 
 seples 
 sepoi 
-seprai 
-seprei 
+seprai
 sepsis 
 September 
 septima 
@@ -23977,7 +23963,6 @@ serutu
 seruyuk 
 servis 
 sesah 
-sesai 
 sesak 
 sesal 
 sesam 
@@ -25081,10 +25066,7 @@ subuh
 subunit 
 subur 
 subversi 
-subversif 
-subyek 
-subyektif 
-subyektivisme 
+subversif
 suceng 
 suci 
 suci hama 
@@ -25370,7 +25352,6 @@ sut
 sutan 
 suten 
 sutil 
-sutra 
 sutradara 
 sutura 
 suul adab 
@@ -26516,7 +26497,6 @@ teranas
 terang 
 terang jelas 
 terap 
-terapang 
 terapeutik 
 terapi 
 terarium 
@@ -28447,7 +28427,7 @@ zaman
 zamin 
 zamindar 
 zamrud 
-zamzam 
+zam-zam 
 zan 
 Zanggi 
 zantara 
@@ -28523,4 +28503,4 @@ Zulkaidah
 zulmat 
 zurafah 
 zuriah 
-zus 
+zus
