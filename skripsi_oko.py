@@ -14,6 +14,7 @@ from Sastrawi.Stemmer.StemmerFactory import StemmerFactory
 from flask import Flask, jsonify, request
 from flask_cors import CORS, cross_origin
 import time
+auth = AutentikasiKBBI("zuttocool@gmail.com", "oko123oko")
 
 app = Flask(__name__)
 cors = CORS(app)
@@ -32,7 +33,7 @@ def init(filepath):
     
     
     spell = SpellChecker(language=None)
-    spell2 = SpellChecker()   
+    spell2 = SpellChecker() # bahasa inggris
     
     spell.word_frequency.load_text_file('./katadasar.txt')
     
@@ -42,32 +43,40 @@ def init(filepath):
     koreksi = list()
     keliru = list()
     
+    masalah = list()
+    masalah_baru = list()
+    
     for word in misspelled:
+        udah_diperiksa = False
+        try:
+            huk = KBBI(word, auth)
+        except TidakDitemukan as e:
+            huk = e.objek
+            print(e)
+            tampung_string = str(e)
+            tampung_string = tampung_string.split(' tidak ditemukan')
+            # masalah_baru.append(str(e))
+            masalah_baru.append(tampung_string[0])
+            masalah.append(str(huk))
+            udah_diperiksa = True
     
         if spell2.correction(word) in misspelled2:
             keliru.append(spell2.correction(word))
 
-        koreksi.append(word)
+        if not udah_diperiksa:
+            koreksi.append(word)
 
-    auth = AutentikasiKBBI("zuttocool@gmail.com", "oko123oko")
-    
-    masalah = list()
-    masalah_baru = list()
-    for k in koreksi:
-      try:
-        huk = KBBI(k, auth)
-      except TidakDitemukan as e:
-        huk = e.objek
-        print(e)
-        masalah_baru.append(str(e))
-        masalah.append(str(huk))
-      
+    rekomendasi_koreksi = list()
+    for kata in koreksi:
+        rekomendasi_koreksi.append(spell.correction(kata))
+
+    print(koreksi)
     total_kata_dokumen = len(sentence)
     dibuang = total_kata_dokumen - total_kata
-    total_masalah = len(masalah)
+    total_masalah = len(misspelled)
     total_kata_baku = total_kata - total_masalah
     
-    return (total_kata_dokumen, total_kata, dibuang, total_kata_baku, total_masalah, masalah, masalah_baru)
+    return (total_kata_dokumen, total_kata, dibuang, total_kata_baku, total_masalah, masalah, masalah_baru, koreksi, rekomendasi_koreksi)
     
     
 
@@ -92,7 +101,7 @@ def index():
     content = request.get_json()
     print(content['lokasi'])
 
-    (total_kata_dokumen, total_kata, dibuang, total_kata_baku, total_masalah, masalah, masalah_baru) = init(content['lokasi'])
+    (total_kata_dokumen, total_kata, dibuang, total_kata_baku, total_masalah, masalah, masalah_baru, koreksi, rekomendasi_koreksi) = init(content['lokasi'])
     text1 = 'total kata pada dokumen :' + str(total_kata_dokumen) + 'kata \n'
     text2 = 'total kata yang sudah distemming :' + str(total_kata) + 'kata \n'
     
@@ -107,7 +116,7 @@ def index():
     print('total waktu eksekusi :', total_waktu_eksekusi, 'detik')
     print('=======================================================')
     print('kata tidak baku bisa jadi berupa nama orang atau merek!')
-    result = {'total_kata_dokumen': total_kata_dokumen, 'total_kata': total_kata, 'dibuang': dibuang, 'total_kata_baku': total_kata_baku, 'total_masalah': total_masalah, 'masalah_baru': masalah_baru, 'masalah': masalah, 'total_waktu_eksekusi': total_waktu_eksekusi}
+    result = {'total_kata_dokumen': total_kata_dokumen, 'total_kata': total_kata, 'dibuang': dibuang, 'total_kata_baku': total_kata_baku, 'total_masalah': total_masalah, 'masalah_baru': masalah_baru, 'masalah': masalah, 'total_waktu_eksekusi': total_waktu_eksekusi, 'koreksi': koreksi, 'rekomendasi_koreksi': rekomendasi_koreksi}
 
     return jsonify(result)
 
